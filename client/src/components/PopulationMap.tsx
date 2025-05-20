@@ -41,21 +41,29 @@ export default function PopulationMap({
   selectedPopulation,
   onPopulationSelect
 }: PopulationMapProps) {
-  // Calculate map bounds based on population coordinates
-  const bounds = L.latLngBounds(
-    populations.map(pop => [pop.coordinates.latitude, pop.coordinates.longitude])
-  );
+  // Default center and zoom for empty state
+  const defaultCenter: [number, number] = [20, 0];
+  const defaultZoom = 2;
 
-  // Center map on the average position of all populations
-  const center = bounds.getCenter();
+  // Calculate map settings based on populations
+  const mapCenter = populations.length > 0
+    ? (() => {
+        const bounds = L.latLngBounds(
+          populations.map(pop => [pop.coordinates.latitude, pop.coordinates.longitude])
+        );
+        const center = bounds.getCenter();
+        return [center.lat, center.lng] as [number, number];
+      })()
+    : defaultCenter;
+
+  const zoom = populations.length > 0 ? 4 : defaultZoom;
 
   return (
     <div className="h-[400px] w-full rounded-lg overflow-hidden border border-gray-200">
       <MapContainer
-        center={[center.lat, center.lng]}
-        zoom={4}
+        center={mapCenter}
+        zoom={zoom}
         className="h-full w-full"
-        bounds={bounds}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -81,7 +89,7 @@ export default function PopulationMap({
         ))}
         
         {/* Legend */}
-        <div className="absolute bottom-2 right-2 bg-white p-2 rounded shadow-md z-[1000]">
+        <div className="absolute bottom-4 right-4 bg-white p-3 rounded-lg shadow-md z-[1000]">
           <div className="text-sm font-semibold mb-1">Timeframes:</div>
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-2">
