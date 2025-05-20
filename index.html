@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanshavli-Admix</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add modern CSS framework -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add search functionality -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Vanshavli</h1>
+        
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="space-y-6">
+                <div class="flex flex-col">
+                    <label for="target" class="text-gray-700 mb-2">Target Population:</label>
+                    <select id="target" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                    </select>
+                </div>
+                
+                <div class="flex flex-col">
+                    <label for="source" class="text-gray-700 mb-2">Source Dataset:</label>
+                    <select id="source" class="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        <option value="bronze_age">Bronze Age</option>
+                        <option value="medieval">Paleolithic Age</option>
+                    </select>
+                </div>
+                
+                <button id="calculate" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                    Run Admixture Model
+                </button>
+            </div>
+        </div>
+
+        <div class="results bg-white rounded-lg shadow-md p-6" style="display: none;">
+            <h2 class="text-2xl font-semibold mb-4">Results</h2>
+            <div class="distance mb-4">
+                <p class="text-gray-700">Genetic Distance: <span id="distance-value" class="font-medium"></span></p>
+            </div>
+            <div class="proportions mb-6">
+                <table id="results-table" class="w-full">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="py-2 px-4 text-left">Source</th>
+                            <th class="py-2 px-4 text-left">Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <canvas id="results-chart" class="mb-6"></canvas>
+            <button id="copy-results" class="bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                Copy Results
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize select2 for searchable dropdown
+        $(document).ready(function() {
+            $('#target').select2({
+                placeholder: 'Search for a population...',
+                allowClear: true
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
