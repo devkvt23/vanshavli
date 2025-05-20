@@ -1,11 +1,10 @@
 import express from 'express';
-import { AnalysisController } from '../controllers/analysis.controller';
+import { calculateAdmixture, calculatePCA, calculateFst } from '../controllers/analysis.controller';
 
 const router = express.Router();
-const controller = new AnalysisController();
 
-router.post('/admixture', controller.calculateAdmixture);
-router.post('/pca', controller.calculatePCA);
-router.post('/fst', controller.calculateFst);
+router.post('/admixture', calculateAdmixture);
+router.post('/pca', calculatePCA);
+router.post('/fst', calculateFst);
 
 export default router; 

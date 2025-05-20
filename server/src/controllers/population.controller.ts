@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Population from '../models/population.model';
+import { Population } from '../models/population.model';
 
 export class PopulationController {
   async getAllPopulations(req: Request, res: Response) {

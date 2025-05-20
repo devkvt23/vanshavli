@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { populations } from '../data/populations';
-import Population from '../models/population.model';
+import { Population } from '../models/population.model';
 
 dotenv.config();
 

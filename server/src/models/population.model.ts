@@ -1,31 +1,27 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IPopulation extends Document {
   name: string;
   region: string;
   timeframe: string;
-  geneticMarkers: {
-    [key: string]: number;
-  };
   coordinates: {
     latitude: number;
     longitude: number;
   };
-  createdAt: Date;
-  updatedAt: Date;
+  geneticMarkers: {
+    [key: string]: number;
+  };
 }
 
-const PopulationSchema: Schema = new Schema({
-  name: { type: String, required: true, unique: true },
+const PopulationSchema = new Schema({
+  name: { type: String, required: true },
   region: { type: String, required: true },
   timeframe: { type: String, required: true },
-  geneticMarkers: { type: Map, of: Number },
   coordinates: {
     latitude: { type: Number, required: true },
     longitude: { type: Number, required: true }
-  }
-}, {
-  timestamps: true
+  },
+  geneticMarkers: { type: Map, of: Number }
 });
 
-export default mongoose.model<IPopulation>('Population', PopulationSchema); 
+export const Population = mongoose.model<IPopulation>('Population', PopulationSchema); 

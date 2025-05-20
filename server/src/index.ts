@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import analysisRoutes from './routes/analysis';
 
 dotenv.config();
 
@@ -12,18 +13,20 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI as string)
-  .then(() => console.log('MongoDB connected successfully'))
-  .catch((err) => console.error('MongoDB connection error:', err));
-
-// Routes will be imported here
-import populationRoutes from './routes/population.routes';
-import analysisRoutes from './routes/analysis.routes';
-
-app.use('/api/populations', populationRoutes);
+// Routes
 app.use('/api/analysis', analysisRoutes);
 
+// MongoDB connection
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/vanshavali';
+mongoose.connect(MONGODB_URI)
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+  });
+
+// Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
