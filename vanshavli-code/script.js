@@ -321,3 +321,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const calculator = new AdmixtureCalculator();
     calculator.initialize();
 });
+
+$(document).ready(function() {
+    $('#target').select2({
+        theme: 'classic',
+        placeholder: 'Search for a population...',
+        allowClear: true,
+        width: '100%',
+        minimumInputLength: 1,
+        dropdownParent: $('body'),
+        data: populations // Your population data array
+    });
+});

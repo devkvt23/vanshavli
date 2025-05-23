@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open index.html",
+            "file": "/home/dev/Desktop/projects/final_vanshavli/vanshavli-code/index.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open index.html (with Edge)",
+            "file": "/home/dev/Desktop/projects/final_vanshavli/vanshavli-code/index.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open index.html (with Brave)",
+            "file": "/home/dev/Desktop/projects/final_vanshavli/vanshavli-code/index.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open index.html (with Firefox)",
+            "file": "/home/dev/Desktop/projects/final_vanshavli/vanshavli-code/index.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open index.html (with Opera)",
+            "file": "/home/dev/Desktop/projects/final_vanshavli/vanshavli-code/index.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open index.html (with Safari)",
+            "file": "/home/dev/Desktop/projects/final_vanshavli/vanshavli-code/index.html"
+        },
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open index.html",
+            "file": "/home/dev/Desktop/projects/final_vanshavli/vanshavli-code/index.html"
+        }
+    ]
+}
